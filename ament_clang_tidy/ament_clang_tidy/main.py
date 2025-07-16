@@ -164,6 +164,11 @@ def main(argv=sys.argv[1:]):
                 return True
             return False
 
+        def is_rclcpp_components_generated(path):
+            if 'rclcpp_components/node_' in path and path.endswith('.cpp'):
+                return True
+            return False
+
         def is_unittest_source(package, file_path):
             return ('%s/test/' % package) in file_path
 
@@ -193,6 +198,10 @@ def main(argv=sys.argv[1:]):
 
             # exclude Qt moc generated files from being checked by clang-tidy
             if is_moc_generated(os.path.basename(item['file'])):
+                continue
+
+            # exclude rclcpp_components generated files from being checked by clang-tidy
+            if is_rclcpp_components_generated(item['file']):
                 continue
 
             # exclude unit test sources from being checked by clang-tidy
