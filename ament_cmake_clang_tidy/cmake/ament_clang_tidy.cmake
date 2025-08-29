@@ -68,7 +68,9 @@ function(ament_clang_tidy)
   endif()
 
   if(NOT ARG_TIMEOUT)
-    set(ARG_TIMEOUT 300)
+    set(ARG_TIMEOUT 600)
+  elseif(DEFINED ament_cmake_clang_tidy_TIMEOUT)
+    set(ARG_TIMEOUT "${ament_cmake_clang_tidy_TIMEOUT}")
   endif()
 
   file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/ament_clang_tidy")
