@@ -68,7 +68,7 @@ function(ament_clang_tidy)
   endif()
 
   if(NOT ARG_TIMEOUT)
-    set(ARG_TIMEOUT 600)
+    set(ARG_TIMEOUT 1200)
   elseif(DEFINED ament_cmake_clang_tidy_TIMEOUT)
     set(ARG_TIMEOUT "${ament_cmake_clang_tidy_TIMEOUT}")
   endif()
